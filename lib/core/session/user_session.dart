@@ -1,7 +1,7 @@
 class UserSession {
-  final String id;
-  final String email;
-  final String token;
+  String? id;
+  String? email;
+  String? token;
 
   UserSession({
     required this.id,
@@ -9,12 +9,10 @@ class UserSession {
     required this.token,
   });
 
-  static fromJson(json) {
-    return UserSession(
-      id: json['id'],
-      email: json['email'],
-      token: json['token'],
-    );
+  UserSession.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    email = json['email'];
+    token = json['token'];
   }
 
   toJson() {
