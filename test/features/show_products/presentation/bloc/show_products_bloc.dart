@@ -6,8 +6,6 @@ part 'show_products_state.dart';
 
 class ShowProductsBloc extends Bloc<ShowProductsEvent, ShowProductsState> {
   ShowProductsBloc() : super(ShowProductsInitial()) {
-    on<ShowProductsEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<ShowProductsEvent>((event, emit) {});
   }
 }

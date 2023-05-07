@@ -1,3 +1,3 @@
 abstract class LoginRepository {
-  Future<bool> authentication(String email, String password);
+  Future<dynamic> authentication(String email, String password);
 }

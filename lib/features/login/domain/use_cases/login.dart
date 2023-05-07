@@ -5,7 +5,13 @@ class Login {
 
   Login(this._loginRepository);
 
-  Future<bool> call(String email, String password) async {
-    return await _loginRepository.authentication(email, password);
+  Future<dynamic> call(String email, String password) async {
+    final result = await _loginRepository.authentication(email, password);
+    if (result['token'] != null) {
+      return true;
+    } else if (result['error'] != null) {
+      return result['error'];
+    }
+    return false;
   }
 }

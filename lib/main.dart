@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'core/routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,10 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Dragon Food',
+        theme: ThemeData(
+          primaryColor: const Color.fromARGB(255, 29, 28, 28),
+        ),
+        routes: AppRoutes.routes);
   }
 }
