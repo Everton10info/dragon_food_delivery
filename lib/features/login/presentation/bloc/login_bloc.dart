@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:dragon_food/core/sources/remote/client.dart';
 import 'package:dragon_food/features/login/data/data_sources/remote_data_source.dart';
 import 'package:dragon_food/features/login/data/repositories/repository_impl.dart';
 import 'package:dragon_food/features/login/domain/use_cases/login.dart';
-import 'package:http/http.dart' as http;
 import 'package:equatable/equatable.dart';
-
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -12,7 +11,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final usecase = Login(
     RepositoryImpl(
       AppHttpClientLogin(
-        http.Client(),
+        AppClient(),
       ),
     ),
   );

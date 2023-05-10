@@ -1,13 +1,15 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dragon_food/core/sources/remote/client.dart';
 
 class AppHttpClientLogin {
-  final http.Client client;
+  final AppClient client;
+
   String url = 'https://dragon-food-api.vercel.app/api/session';
 
   AppHttpClientLogin(this.client);
   Future<Map<String, dynamic>> login(String email, String password) async {
-    final result = await client.post(Uri.parse(url),
+    final result = await client.post(
+        uri: url,
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({"email": email, "password": password}));
     return jsonDecode(result.body);

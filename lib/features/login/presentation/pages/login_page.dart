@@ -1,10 +1,10 @@
+import 'package:dragon_food/core/sources/remote/client.dart';
 import 'package:dragon_food/features/login/data/data_sources/remote_data_source.dart';
 import 'package:dragon_food/features/login/data/repositories/repository_impl.dart';
 import 'package:dragon_food/features/login/domain/use_cases/login.dart';
 import 'package:dragon_food/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,7 +16,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
-  final login = Login(RepositoryImpl(AppHttpClientLogin(http.Client())));
+  final login = Login(
+    RepositoryImpl(
+      AppHttpClientLogin(
+        AppClient(),
+      ),
+    ),
+  );
   final _bloc = LoginBloc();
   @override
   Widget build(BuildContext context) {
