@@ -1,4 +1,3 @@
-import 'package:dragon_food/features/home/data/models/products_model.dart';
 import 'package:dragon_food/features/home/domain/entities/products.dart';
 
 import '../../domain/repositories/repository.dart';

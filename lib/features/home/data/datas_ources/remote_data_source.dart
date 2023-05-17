@@ -21,13 +21,13 @@ class AppHttpClientFindProducts {
         await AppSharedPreferences.getData('user-session'),
       )),
     );
-    print(user.token);
+
     final response = await client.get(uri: url + path, headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ${user.token}',
     });
     final List result = jsonDecode(response.body);
-    print('vem do back $result');
+
     return result.map((e) => ProductModel.fromJon(e)).toList();
   }
 }

@@ -4,14 +4,13 @@ class UserSession {
   String? token;
 
   UserSession({
-    required this.id,
     required this.email,
     required this.token,
   });
 
   UserSession.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    email = json['email'];
+    id = json['user']['id'];
+    email = json['user']['email'];
     token = json['token'];
   }
 
