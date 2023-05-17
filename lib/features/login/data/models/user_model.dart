@@ -1,11 +1,11 @@
 import 'package:dragon_food/features/login/domain/entities/user.dart';
 
 class UserModel extends User {
-  UserModel(
-    super.name,
-    super.email,
-    super.password,
-  );
+  UserModel({
+    required super.name,
+    required super.email,
+    required super.password,
+  });
 
   Map<String, dynamic> toJson() {
     return {

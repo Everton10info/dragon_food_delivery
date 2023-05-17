@@ -4,6 +4,7 @@ import 'package:dragon_food/features/login/data/data_sources/remote_data_source.
 import 'package:dragon_food/features/login/data/repositories/repository_impl.dart';
 import 'package:dragon_food/features/login/domain/use_cases/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,16 +13,25 @@ void main() async {
 
   SharedPreferences.setMockInitialValues({});
   SharedPreferences pref = await SharedPreferences.getInstance();
+  setUp(
+    () async => await dotenv.load(fileName: '.env'),
+  );
 
   test('login', () async {
-    final usecase = Login(RepositoryImpl(AppHttpClientLogin(AppClient())));
+    final usecase = Login(
+      loginRepository: LoginRepositoryImpl(
+        appHttpClientLogin: AppHttpClientLogin(
+          client: AppClient(),
+        ),
+      ),
+    );
     final result = await usecase("everton@gmail.com", "12345678");
 
     expect(result, true);
   });
 
   test('salvar e ler token', () async {
-    final client = AppHttpClientLogin(AppClient());
+    final client = AppHttpClientLogin(client: AppClient());
     final res = await client.login("everton@gmail.com", "12345678");
 
     pref.setString('session', jsonEncode(res));

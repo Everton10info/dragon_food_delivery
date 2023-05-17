@@ -3,8 +3,15 @@ import 'package:http/http.dart';
 class AppClient {
   final httpClient = Client();
 
-  Future<dynamic> get({required String uri}) {
-    return httpClient.get(Uri.parse(uri));
+  Future<dynamic> get({
+    required String uri,
+    required Map<String, String> headers,
+  }) {
+    return httpClient.get(
+        Uri.parse(
+          uri,
+        ),
+        headers: headers);
   }
 
   Future<dynamic> post({

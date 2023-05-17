@@ -4,13 +4,15 @@ import 'package:dragon_food/core/sources/local/shared_preferences/app_shared_pre
 import 'package:dragon_food/features/login/data/data_sources/remote_data_source.dart';
 import 'package:dragon_food/features/login/domain/repositories/repository.dart';
 
-class RepositoryImpl implements LoginRepository {
-  final AppHttpClientLogin _appHttpClientLogin;
+class LoginRepositoryImpl implements LoginRepository {
+  final AppHttpClientLogin appHttpClientLogin;
 
-  RepositoryImpl(this._appHttpClientLogin);
+  LoginRepositoryImpl({
+    required this.appHttpClientLogin,
+  });
   @override
   Future<dynamic> authentication(String email, String password) async {
-    final result = await _appHttpClientLogin.login(email, password);
+    final result = await appHttpClientLogin.login(email, password);
     if (result['error'] != null) {
       return result;
     } else {
