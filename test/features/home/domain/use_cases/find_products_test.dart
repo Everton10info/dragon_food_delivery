@@ -10,9 +10,9 @@ import 'package:mocktail/mocktail.dart';
 class MockRepoGet extends Mock implements ProductsRepository {}
 
 void main() async {
-  late final MockRepoGet mockRepoProducts;
-  late final FindProducts usecase;
-  late final AppClient http;
+  late MockRepoGet mockRepoProducts;
+  late FindProducts usecase;
+  late AppClient http;
 
   setUp(
     () async {

@@ -38,7 +38,7 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-05-16T17:34:01.918Z",
-    "modified": "2023-05-16T17:37:03.679Z",
+    "modified": "2023-05-18T20:03:37.417Z",
     "headers": [
       {
         "name": "Accept",
@@ -54,7 +54,7 @@
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDgzYjZiOWRhNTkyN2M0YzliMTY2YiIsImlhdCI6MTY4NDI1ODUzOCwiZXhwIjoxNjg0MzQ0OTM4fQ.vG3WlJYA9gzkYiW1QydmQx37NVecAX4pLtpXrkyK9Gw"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDgzYjZiOWRhNTkyN2M0YzliMTY2YiIsImlhdCI6MTY4NDQ0MDIwMSwiZXhwIjoxNjg0NTI2NjAxfQ.raVPwmPXwHEIkawJQJqHMrXdfSY2vMhGU_ebH6IWWYw"
     },
     "tests": []
   }

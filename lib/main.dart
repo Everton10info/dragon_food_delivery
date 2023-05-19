@@ -21,16 +21,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primaryColor: const Color(0xffF1CE39),
             useMaterial3: true,
-            inputDecorationTheme: const InputDecorationTheme(
-              errorBorder: InputBorder.none,
-              focusedErrorBorder: InputBorder.none,
-              errorStyle: TextStyle(color: Colors.amber),
-              filled: true,
-              fillColor: Color(0xFF474747),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-            ),
             elevatedButtonTheme: ElevatedButtonThemeData(
                 style: ButtonStyle(
               shape: MaterialStateProperty.all(RoundedRectangleBorder(

@@ -68,9 +68,23 @@ class _LoginPageState extends State<LoginPage> {
                         style: const TextStyle(color: Color(0XFFE5E1E1)),
                         cursorColor: const Color(0xFFE5E1E1),
                         decoration: const InputDecoration(
-                            focusColor: Colors.amber,
-                            hintText: 'Login',
-                            hintStyle: TextStyle(color: Color(0xFFE5E1E1))),
+                          focusColor: Colors.amber,
+                          hintText: 'Login',
+                          hintStyle: TextStyle(
+                            color: Color(0xFFE5E1E1),
+                          ),
+                          errorBorder: InputBorder.none,
+                          focusedErrorBorder: InputBorder.none,
+                          errorStyle: TextStyle(color: Colors.amber),
+                          filled: true,
+                          fillColor: Color(0xFF474747),
+                          focusedBorder: UnderlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          border: UnderlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                        ),
                         controller: _controllerEmail,
                         validator: (value) {
                           if (value!.isNotEmpty &&
@@ -87,9 +101,23 @@ class _LoginPageState extends State<LoginPage> {
                         style: const TextStyle(color: Color(0XFFE5E1E1)),
                         cursorColor: const Color(0xFFE5E1E1),
                         decoration: const InputDecoration(
-                            focusColor: Colors.amber,
-                            hintText: 'Senha',
-                            hintStyle: TextStyle(color: Color(0xFFE5E1E1))),
+                          focusColor: Colors.amber,
+                          hintText: 'Senha',
+                          hintStyle: TextStyle(
+                            color: Color(0xFFE5E1E1),
+                          ),
+                          errorBorder: InputBorder.none,
+                          focusedErrorBorder: InputBorder.none,
+                          errorStyle: TextStyle(color: Colors.amber),
+                          filled: true,
+                          fillColor: Color(0xFF474747),
+                          focusedBorder: UnderlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          border: UnderlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                        ),
                         controller: _controllerPassword,
                         validator: (value) {
                           if (value!.isNotEmpty && value.length > 7) {

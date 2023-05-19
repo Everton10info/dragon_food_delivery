@@ -29,6 +29,6 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _startScreenNavigatorTimer() async {
     await Future.delayed(const Duration(seconds: 2));
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    if (mounted) Navigator.of(context).pushReplacementNamed('/login-page');
+    if (mounted) Navigator.of(context).pushReplacementNamed('/home-page');
   }
 }

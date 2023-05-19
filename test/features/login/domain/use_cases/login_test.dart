@@ -12,14 +12,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class MockRepoLogin extends Mock implements LoginRepository {}
 
 void main() async {
-  late final MockRepoLogin mockRepo;
-  late final Login usecase;
+  late MockRepoLogin mockRepo;
+  late Login usecase;
   late SharedPreferences pref;
   setUp(() async {
+    await dotenv.load(fileName: '.env');
     mockRepo = MockRepoLogin();
     usecase = Login(loginRepository: mockRepo);
-
-    await dotenv.load(fileName: '.env');
     SharedPreferences.setMockInitialValues({});
     pref = await SharedPreferences.getInstance();
   });
