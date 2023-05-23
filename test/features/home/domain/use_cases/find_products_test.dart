@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:dragon_food/core/sources/remote/client.dart';
 import 'package:dragon_food/features/home/domain/entities/products.dart';
 import 'package:dragon_food/features/home/domain/repositories/repository.dart';
-import 'package:dragon_food/features/home/domain/use_cases/find_products.dart';
+import 'package:dragon_food/features/home/domain/use_cases/find_daily_deal.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -11,7 +11,7 @@ class MockRepoGet extends Mock implements ProductsRepository {}
 
 void main() async {
   late MockRepoGet mockRepoProducts;
-  late FindProducts usecase;
+  late FindDailyDealUseCase usecase;
   late AppClient http;
 
   setUp(
@@ -19,7 +19,7 @@ void main() async {
       http = AppClient();
 
       mockRepoProducts = MockRepoGet();
-      usecase = FindProducts(repository: mockRepoProducts);
+      usecase = FindDailyDealUseCase(repository: mockRepoProducts);
       await dotenv.load(fileName: '.env');
     },
   );

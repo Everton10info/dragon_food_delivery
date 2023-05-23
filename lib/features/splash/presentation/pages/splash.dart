@@ -9,8 +9,14 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+/*   late HomeBloc bloc;
+  CachedNetworkImage? img;
+  String description = ''; */
   @override
   void initState() {
+    /*    bloc = getIt<HomeBloc>();
+    bloc.add(FindDailyDealEvent()); */
+
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     super.initState();
     _startScreenNavigatorTimer();
@@ -29,6 +35,10 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _startScreenNavigatorTimer() async {
     await Future.delayed(const Duration(seconds: 2));
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    if (mounted) Navigator.of(context).pushReplacementNamed('/home-page');
+    if (mounted) {
+      Navigator.of(context).pushReplacementNamed(
+        '/home-page',
+      );
+    }
   }
 }

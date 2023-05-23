@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../injection_container.dart';
-import '../../../home/domain/use_cases/find_products.dart';
+import '../../../home/domain/use_cases/find_daily_deal.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -169,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                                 const Color(0xffF1CE39), // Background color
                           ),
                           onPressed: () {
-                            var t = FindProducts(
+                            var t = FindDailyDealUseCase(
                                 repository: ProductsRepositoryImpl(
                                     appHttpClient: AppHttpClientFindProducts(
                                         client: AppClient())));

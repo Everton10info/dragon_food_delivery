@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
+
+import '../../../../injection_container.dart';
+import '../bloc/home_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -8,6 +13,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late HomeBloc bloc;
+
+  @override
+  void initState() {
+    bloc = getIt<HomeBloc>();
+    bloc.add(FindDailyDealEvent());
+
+    super.initState();
+  }
+
   final list = <Widget>[
     SizedBox(
       child: Column(
@@ -250,41 +265,46 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 32,
             ),
+            Container(
+              alignment: Alignment.topLeft,
+              child: const Text(
+                'Desconto do dia!',
+                style: TextStyle(
+                  color: Color(0xffffffff),
+                ),
+              ),
+            ),
             SizedBox(
               width: double.infinity,
-              height: 220,
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: const Text(
-                      'Desconto do dia!',
-                      style: TextStyle(
-                        color: Color(0xffffffff),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Image.network(
-                    width: double.infinity,
-                    fit: BoxFit.contain,
-                    'https://github.com/Everton10info/imagens/assets/64455494/0edfe04f-4761-41b4-8184-1be6186c77fd',
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Container(
-                    alignment: Alignment.bottomLeft,
-                    child: const Text(
-                      'Combo fritas + burguer (20%)',
-                      style: TextStyle(
-                        color: Color(0xffffffff),
-                      ),
-                    ),
-                  )
-                ],
+              height: 180,
+              child: BlocBuilder<HomeBloc, HomeState>(
+                bloc: bloc,
+                builder: (context, state) {
+                  if (state is FindProductsLoaded) {
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            child: state.products.cacheImage,
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            state.products.description,
+                            style: const TextStyle(
+                              color: Color(0xffffffff),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                      ],
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
               ),
             ),
             const SizedBox(
