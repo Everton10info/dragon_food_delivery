@@ -16,7 +16,6 @@ class ProductsDataSourceImpl implements ProductsDataSource {
   @override
   Future<List<ProductModel>> getProducts() async {
     if (ProductModel.productsCache.isNotEmpty) {
-      print(ProductModel.productsCache.first.category);
       return ProductModel.productsCache;
     }
     final response = await client.get(uri: url + path, headers: {
@@ -30,5 +29,3 @@ class ProductsDataSourceImpl implements ProductsDataSource {
     return ProductModel.productsCache;
   }
 }
-  
-// ${userSession['user']['token']}

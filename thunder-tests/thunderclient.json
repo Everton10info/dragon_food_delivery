@@ -34,11 +34,11 @@
     "colId": "0f15168d-6681-4c01-8b41-96bac6f0d2a0",
     "containerId": "",
     "name": "get ",
-    "url": "https://dragon-food-api.vercel.app/api/products",
-    "method": "GET",
+    "url": "https://dragon-food-api.vercel.app/api/product",
+    "method": "POST",
     "sortNum": 10000,
     "created": "2023-05-16T17:34:01.918Z",
-    "modified": "2023-05-19T18:30:45.517Z",
+    "modified": "2023-05-26T17:29:22.845Z",
     "headers": [
       {
         "name": "Accept",
@@ -54,8 +54,12 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": " {\n    \"title\": \"Combo com fritas \",\n    \"category\": \"dailyDeal\",\n    \"description\": \"Combo fritas + burguer (20%)\",\n    \"price\": 3300,\n    \"local\": \"Restaurante pampa  \",\n    \"ingredients\": \" fritas e amburguer de carne, queijo, tomate alface e molho especial\",\n    \"deliveryPrice\": 0,\n    \"urlImage\": \"https://github.com/Everton10info/imagens/assets/64455494/0edfe04f-4761-41b4-8184-1be6186c77fd\",\n    \"__v\": 0\n  }",
+      "raw": " {\n    \"title\": \"Combo com fritas \",\n    \"category\": \"dailyDeal\",\n    \"description\": \"Combo fritas + burguer (20%)\",\n    \"price\": 3300,\n    \"local\": \"Restaurante pampa  \",\n    \"ingredients\": \" fritas e amburguer de carne, queijo, tomate alface e molho especial\",\n    \"deliveryPrice\": 0,\n    \"urlImage\": \"https://raw.githubusercontent.com/Everton10info/dragon_food_delivery/main/teeeeeeste.png?token=GHSAT0AAAAAACDEWAJ6DCHIF7ON4VKCNX56ZDQZIBQ\"\n  }",
       "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDgzYjZiOWRhNTkyN2M0YzliMTY2YiIsImlhdCI6MTY4NTExNDQ2NCwiZXhwIjoxNjg1MTE1MDY0fQ.aKUMW2TJhOl4HqUy6tPqQ3c5e8oN18Sd7WL5eWTqZIQ"
     },
     "tests": []
   }

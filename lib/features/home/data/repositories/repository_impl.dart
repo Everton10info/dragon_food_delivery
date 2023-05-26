@@ -29,7 +29,6 @@ class HomeRepositoryImpl implements HomeRepository {
       productsEntity.add(entity);
     }
 
-    print(productsEntity.length);
     return productsEntity;
   }
 }
