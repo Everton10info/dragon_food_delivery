@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:dragon_food/core/session/user_session.dart';
-import 'package:dragon_food/core/sources/local/shared_preferences/app_shared_preferences.dart';
+import 'package:dragon_food/core/session/user_session_model.dart';
+import 'package:dragon_food/core/data/data_souces/local/shared_preferences/app_shared_preferences.dart';
 import 'package:dragon_food/features/login/data/data_sources/remote_data_source.dart';
 import 'package:dragon_food/features/login/domain/repositories/repository.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
-  final AppHttpClientLogin appHttpClientLogin;
+  final DataSouceLogin appHttpClientLogin;
 
   LoginRepositoryImpl({
     required this.appHttpClientLogin,
@@ -17,7 +17,7 @@ class LoginRepositoryImpl implements LoginRepository {
       return result;
     } else {
       AppSharedPreferences.setString('user-session', jsonEncode(result));
-      UserSession.fromJson(result);
+      UserSessionModel.fromJson(result);
 
       return result;
     }

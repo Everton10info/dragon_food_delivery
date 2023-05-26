@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:dragon_food/core/session/user_session.dart';
-import 'package:dragon_food/core/sources/remote/client.dart';
+import 'package:dragon_food/core/session/user_session_model.dart';
+import 'package:dragon_food/core/data/data_souces/remote/client/client.dart';
 import 'package:dragon_food/features/login/data/data_sources/remote_data_source.dart';
 import 'package:dragon_food/features/login/domain/repositories/repository.dart';
 import 'package:dragon_food/features/login/domain/use_cases/login.dart';
@@ -37,7 +37,7 @@ void main() async {
   });
 
   test('salvar e ler token da sessão', () async {
-    final client = AppHttpClientLogin(client: AppClient());
+    final client = DataSouceLogin(client: AppClient());
     final res = await client.login("everton@gmail.com", "12345678");
 
     pref.setString('session', jsonEncode(res));
@@ -45,7 +45,7 @@ void main() async {
     final Map<String, dynamic> session =
         jsonDecode(pref.get('session').toString());
 
-    UserSession user = UserSession.fromJson(session);
+    UserSessionModel user = UserSessionModel.fromJson(session);
 
     expect(user.email, 'everton@gmail.com');
   });

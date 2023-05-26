@@ -1,18 +1,25 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-import '../../domain/entities/products.dart';
+class ProductModel {
+  final String title;
+  final String category;
+  final String description;
+  final int price;
+  final String local;
+  final String ingredients;
+  final int deliveryPrice;
+  final CachedNetworkImage cacheImage;
 
-class ProductModel extends Products {
   ProductModel({
-    required super.title,
-    required super.category,
-    required super.description,
-    required super.price,
-    required super.local,
-    required super.ingredients,
-    required super.deliveryPrice,
-    required super.cacheImage,
+    required this.title,
+    required this.category,
+    required this.description,
+    required this.price,
+    required this.local,
+    required this.ingredients,
+    required this.deliveryPrice,
+    required this.cacheImage,
   });
   factory ProductModel.fromJon(Map<String, dynamic> json) {
     return ProductModel(
@@ -36,4 +43,6 @@ class ProductModel extends Products {
       ),
     );
   }
+
+  static List<ProductModel> productsCache = [];
 }

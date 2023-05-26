@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'package:dragon_food/core/sources/remote/client.dart';
-import 'package:dragon_food/features/home/domain/entities/products.dart';
+import 'package:dragon_food/core/data/data_souces/remote/client/client.dart';
+import 'package:dragon_food/features/home/domain/entities/product.dart';
 import 'package:dragon_food/features/home/domain/repositories/repository.dart';
 import 'package:dragon_food/features/home/domain/use_cases/find_daily_deal.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockRepoGet extends Mock implements ProductsRepository {}
+class MockRepoGet extends Mock implements HomeRepository {}
 
 void main() async {
   late MockRepoGet mockRepoProducts;
@@ -25,7 +25,7 @@ void main() async {
   );
   test('usecase produtos', () async {
     when(() => mockRepoProducts.getProducts())
-        .thenAnswer((_) async => <Products>[]);
+        .thenAnswer((_) async => <Product>[]);
 
     final result = await usecase();
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../../../injection_container.dart';
 import '../bloc/home_bloc.dart';
@@ -226,20 +225,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(backgroundColor: Colors.white),
+      appBar: AppBar(
+        foregroundColor: Colors.white,
+        elevation: 0,
+        toolbarHeight: 120,
+        backgroundColor: Colors.transparent,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Image.asset(
+              'assets/logo/Logo.png',
+              width: 90,
+            ),
+          ),
+        ],
+      ),
+      drawer: const Drawer(
+        backgroundColor: Colors.white,
+      ),
       backgroundColor: const Color(0xff141414),
       body: Container(
-        margin: const EdgeInsets.all(24),
+        margin: const EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 24.0),
-              child: Image.asset(
-                'assets/logo/Logo.png',
-                width: 76,
-              ),
-            ),
             const SizedBox(
               height: 24,
             ),
@@ -280,18 +289,18 @@ class _HomePageState extends State<HomePage> {
               child: BlocBuilder<HomeBloc, HomeState>(
                 bloc: bloc,
                 builder: (context, state) {
-                  if (state is FindProductsLoaded) {
+                  if (state is FindDailyDealLoaded) {
                     return Column(
                       children: [
                         Expanded(
                           child: SizedBox(
-                            child: state.products.cacheImage,
+                            child: state.product.cacheImage,
                           ),
                         ),
                         Container(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            state.products.description,
+                            state.product.description,
                             style: const TextStyle(
                               color: Color(0xffffffff),
                             ),

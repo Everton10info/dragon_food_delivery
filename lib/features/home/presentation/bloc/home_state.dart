@@ -8,19 +8,19 @@ abstract class HomeState extends Equatable {
   List<Object> get props => [];
 }
 
-class FindProductsInitial extends HomeState {}
+class FindDailyDealInitial extends HomeState {}
 
-class FindProductsLoader extends HomeState {}
+class FindDailyDealLoader extends HomeState {}
 
-class FindProductsLoaded extends HomeState {
-  final Products products;
-  const FindProductsLoaded({
-    required this.products,
+class FindDailyDealLoaded extends HomeState {
+  final Product product;
+  const FindDailyDealLoaded({
+    required this.product,
   });
 }
 
-class FindProductsException extends HomeState {
+class FindDailyDealException extends HomeState {
   final String message;
 
-  const FindProductsException({required this.message});
+  const FindDailyDealException({required this.message});
 }

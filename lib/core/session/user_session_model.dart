@@ -1,14 +1,14 @@
-class UserSession {
+class UserSessionModel {
   String? id;
   String? email;
   String? token;
 
-  UserSession({
+  UserSessionModel({
     required this.email,
     required this.token,
   });
 
-  UserSession.fromJson(Map<String, dynamic> json) {
+  UserSessionModel.fromJson(Map<String, dynamic> json) {
     id = json['user']['id'];
     email = json['user']['email'];
     token = json['token'];

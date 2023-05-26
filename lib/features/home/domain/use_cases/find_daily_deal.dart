@@ -1,14 +1,14 @@
-import '../entities/products.dart';
+import '../entities/product.dart';
 import '../repositories/repository.dart';
 
 class FindDailyDealUseCase {
-  final ProductsRepository repository;
+  final HomeRepository repository;
 
   FindDailyDealUseCase({
     required this.repository,
   });
 
-  Future<Products?> call() async {
+  Future<Product?> call() async {
     final list = await repository.getProducts();
 
     for (var element in list) {

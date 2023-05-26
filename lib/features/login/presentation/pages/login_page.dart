@@ -1,12 +1,8 @@
-import 'package:dragon_food/core/sources/remote/client.dart';
-import 'package:dragon_food/features/home/data/datas_ources/remote_data_source.dart';
-import 'package:dragon_food/features/home/data/repositories/repository_impl.dart';
 import 'package:dragon_food/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../injection_container.dart';
-import '../../../home/domain/use_cases/find_daily_deal.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -168,13 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor:
                                 const Color(0xffF1CE39), // Background color
                           ),
-                          onPressed: () {
-                            var t = FindDailyDealUseCase(
-                                repository: ProductsRepositoryImpl(
-                                    appHttpClient: AppHttpClientFindProducts(
-                                        client: AppClient())));
-                            t();
-                          },
+                          onPressed: () {},
                           child: const Text(
                             'Me Cadastrar',
                             style: TextStyle(color: Color(0xFF141414)),

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
-class Products {
+class Product {
   final String title;
   final String category;
   final String description;
@@ -10,7 +10,7 @@ class Products {
   final int deliveryPrice;
   final CachedNetworkImage cacheImage;
 
-  Products({
+  Product({
     required this.title,
     required this.category,
     required this.description,

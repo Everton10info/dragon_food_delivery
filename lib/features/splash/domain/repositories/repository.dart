@@ -1,5 +1,5 @@
 import '../entities/product.dart';
 
-abstract class HomeRepository {
+abstract class SplashRepository {
   Future<List<Product>> getProducts();
 }

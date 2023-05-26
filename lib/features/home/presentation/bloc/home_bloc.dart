@@ -2,7 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:dragon_food/features/home/domain/entities/products.dart';
+import 'package:dragon_food/features/home/domain/entities/product.dart';
 import 'package:dragon_food/features/home/domain/use_cases/find_daily_deal.dart';
 
 part 'home_event.dart';
@@ -10,17 +10,17 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FindDailyDealUseCase usecase;
-  HomeBloc({required this.usecase}) : super(FindProductsInitial()) {
+  HomeBloc({required this.usecase}) : super(FindDailyDealInitial()) {
     on<FindDailyDealEvent>((event, emit) async {
-      final Products? product = (await usecase());
+      final Product? product = (await usecase());
 
-      emit(FindProductsLoader());
+      emit(FindDailyDealLoader());
 
       if (product == null) {
-        emit(const FindProductsException(message: 'deu erro manooo'));
+        emit(const FindDailyDealException(message: 'deu erro manooo'));
       } else {
         emit(
-          FindProductsLoaded(products: product),
+          FindDailyDealLoaded(product: product),
         );
       }
     });
