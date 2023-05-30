@@ -64,14 +64,15 @@ class _LoginPageState extends State<LoginPage> {
                         style: const TextStyle(color: Color(0XFFE5E1E1)),
                         cursorColor: const Color(0xFFE5E1E1),
                         decoration: const InputDecoration(
-                          focusColor: Colors.amber,
+                          focusColor: Color(0xffF1CE39),
                           hintText: 'Login',
                           hintStyle: TextStyle(
                             color: Color(0xFFE5E1E1),
                           ),
-                          errorBorder: InputBorder.none,
-                          focusedErrorBorder: InputBorder.none,
-                          errorStyle: TextStyle(color: Colors.amber),
+                          errorBorder: UnderlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          errorStyle: TextStyle(color: Color(0xffF1CE39)),
                           filled: true,
                           fillColor: Color(0xFF474747),
                           focusedBorder: UnderlineInputBorder(
@@ -97,14 +98,15 @@ class _LoginPageState extends State<LoginPage> {
                         style: const TextStyle(color: Color(0XFFE5E1E1)),
                         cursorColor: const Color(0xFFE5E1E1),
                         decoration: const InputDecoration(
-                          focusColor: Colors.amber,
+                          focusColor: Color(0xffF1CE39),
                           hintText: 'Senha',
                           hintStyle: TextStyle(
                             color: Color(0xFFE5E1E1),
                           ),
-                          errorBorder: InputBorder.none,
-                          focusedErrorBorder: InputBorder.none,
-                          errorStyle: TextStyle(color: Colors.amber),
+                          errorBorder: UnderlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          errorStyle: TextStyle(color: Color(0xffF1CE39)),
                           filled: true,
                           fillColor: Color(0xFF474747),
                           focusedBorder: UnderlineInputBorder(
