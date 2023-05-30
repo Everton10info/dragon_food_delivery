@@ -11,6 +11,11 @@ class _AppNavigatorBarState extends State<AppNavigatorBar> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        break;
+      default:
+    }
     setState(() {
       _selectedIndex = index;
     });

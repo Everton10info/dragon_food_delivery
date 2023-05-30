@@ -229,7 +229,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           foregroundColor: Colors.white,
           elevation: 0,
-          toolbarHeight: 120,
+          toolbarHeight: 110,
           backgroundColor: Colors.transparent,
           actions: [
             Padding(
@@ -480,7 +480,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.35,
+                height: MediaQuery.of(context).size.height * 0.48,
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
