@@ -37,7 +37,7 @@ void main() async {
   });
 
   test('salvar e ler token da sessão', () async {
-    final client = DataSouceLogin(client: AppClient());
+    final client = LoginDataSource(client: AppClient());
     final res = await client.login("everton@gmail.com", "12345678");
 
     pref.setString('session', jsonEncode(res));

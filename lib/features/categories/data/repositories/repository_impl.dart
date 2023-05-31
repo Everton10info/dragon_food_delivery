@@ -3,10 +3,10 @@ import '../../domain/entities/product.dart';
 import '../../domain/repositories/repository.dart';
 import '../datasources/remote_data_source.dart';
 
-class HomeRepositoryImpl implements CategoriesRepository {
+class CategoriesRepositoryImpl implements CategoriesRepository {
   final CategoriesDataSource categoriesDataSource;
 
-  HomeRepositoryImpl({
+  CategoriesRepositoryImpl({
     required this.categoriesDataSource,
   });
   @override

@@ -2,17 +2,16 @@
 import '../entities/product.dart';
 import '../repositories/repository.dart';
 
-class FindDailyDealUseCase {
+class FindCategoryUseCase {
   final CategoriesRepository repository;
-  final String category;
+
   final List<Product> categoryList = [];
 
-  FindDailyDealUseCase({
+  FindCategoryUseCase({
     required this.repository,
-    required this.category,
   });
 
-  Future<List<Product>> call() async {
+  Future<List<Product>> call(String category) async {
     final list = await repository.getProducts();
 
     for (var element in list) {

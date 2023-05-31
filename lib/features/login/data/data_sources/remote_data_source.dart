@@ -3,12 +3,12 @@ import 'dart:convert';
 import '../../../../core/env/app_environment.dart';
 import '../../../../core/data/data_souces/remote/client/client.dart';
 
-class DataSouceLogin {
+class LoginDataSource {
   final AppClient client;
   String path = '/session';
   String url = AppEnvironment.baseUrl;
 
-  DataSouceLogin({
+  LoginDataSource({
     required this.client,
   });
   Future<Map<String, dynamic>> login(String email, String password) async {

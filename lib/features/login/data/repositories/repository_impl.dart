@@ -5,7 +5,7 @@ import 'package:dragon_food/features/login/data/data_sources/remote_data_source.
 import 'package:dragon_food/features/login/domain/repositories/repository.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
-  final DataSouceLogin appHttpClientLogin;
+  final LoginDataSource appHttpClientLogin;
 
   LoginRepositoryImpl({
     required this.appHttpClientLogin,
