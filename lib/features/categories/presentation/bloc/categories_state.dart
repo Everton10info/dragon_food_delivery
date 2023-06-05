@@ -4,15 +4,15 @@ abstract class CategoriesState extends Equatable {
   const CategoriesState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [CategoryLoadedState];
 }
 
 class CategoriesInitial extends CategoriesState {}
 
-class CategoryLoaded extends CategoriesState {
+class CategoryLoadedState extends CategoriesState {
   final List<Product> listCategory;
 
-  const CategoryLoaded({
+  const CategoryLoadedState({
     required this.listCategory,
   });
 }

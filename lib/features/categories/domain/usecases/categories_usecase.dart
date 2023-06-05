@@ -4,7 +4,6 @@ import '../repositories/repository.dart';
 
 class FindCategoryUseCase {
   final CategoriesRepository repository;
-
   final List<Product> categoryList = [];
 
   FindCategoryUseCase({
@@ -12,12 +11,16 @@ class FindCategoryUseCase {
   });
 
   Future<List<Product>> call(String category) async {
-    final list = await repository.getProducts();
+    final listProducts = await repository.getProducts();
+    List<Product> listTemp = [];
 
-    for (var element in list) {
+    for (var element in listProducts) {
       if (element.category == category) {
-        categoryList.add(element);
+        listTemp.add(element);
       }
+    }
+    if (listTemp.length > categoryList.length) {
+      categoryList.addAll(listTemp);
     }
     return categoryList;
   }

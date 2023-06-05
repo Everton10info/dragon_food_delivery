@@ -24,5 +24,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         );
       }
     });
+    on((event, emit) => 0);
   }
 }

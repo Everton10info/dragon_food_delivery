@@ -72,7 +72,8 @@ class _LoginPageState extends State<LoginPage> {
                           errorBorder: UnderlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
-                          errorStyle: TextStyle(color: Color(0xffF1CE39)),
+                          errorStyle: TextStyle(
+                              color: Color(0xffDB7E76)), // Color(0xffF1CE39)),
                           filled: true,
                           fillColor: Color(0xFF474747),
                           focusedBorder: UnderlineInputBorder(
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                           errorBorder: UnderlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
-                          errorStyle: TextStyle(color: Color(0xffF1CE39)),
+                          errorStyle: TextStyle(color: Color(0xffDB7E76)),
                           filled: true,
                           fillColor: Color(0xFF474747),
                           focusedBorder: UnderlineInputBorder(

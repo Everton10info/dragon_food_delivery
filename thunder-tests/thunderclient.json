@@ -103,5 +103,23 @@
       "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDgzYjZiOWRhNTkyN2M0YzliMTY2YiIsImlhdCI6MTY4NTQ3MDUyMywiZXhwIjoxNjg1NTU2OTIzfQ.xruglFIT7Yl2cJREc1VHGIPtlOvYDH5H6zpV4tL120s"
     },
     "tests": []
+  },
+  {
+    "_id": "be802273-f25e-4c27-8a9f-19ba09c3a9d5",
+    "colId": "ade5f91c-8c7b-4fb5-b978-339c89cd3e14",
+    "containerId": "",
+    "name": "verify-login",
+    "url": "https://dragon-food-api.vercel.app/api/verify-login",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-06-05T21:01:47.343Z",
+    "modified": "2023-06-05T21:09:02.988Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDgzYjZiOWRhNTkyN2M0YzliMTY2YiIsImlhdCI6MTY4NTk5OTMxMywiZXhwIjoxNjg2MDg1NzEzfQ.CK1nWV0jYoy4mpKCFmFeddUN3us2cd431ghUPxSyq"
+    },
+    "tests": []
   }
 ]

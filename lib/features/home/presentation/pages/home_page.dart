@@ -402,6 +402,7 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: const Color(0xff141414),
         body: Container(
+          constraints: const BoxConstraints(minWidth: 300, maxWidth: 550),
           margin: const EdgeInsets.symmetric(horizontal: 24),
           child: SingleChildScrollView(
             child:
@@ -449,10 +450,8 @@ class _HomePageState extends State<HomePage> {
                     if (state is FindDailyDealLoaded) {
                       return Column(
                         children: [
-                          Expanded(
-                            child: SizedBox(
-                              child: state.product.cacheImage,
-                            ),
+                          Container(
+                            child: state.product.cacheImage,
                           ),
                           Container(
                             alignment: Alignment.bottomLeft,

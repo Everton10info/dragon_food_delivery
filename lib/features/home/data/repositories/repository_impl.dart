@@ -1,6 +1,6 @@
+import 'package:dragon_food/core/data/data_souces/remote/models/products_model.dart';
 import 'package:dragon_food/features/home/domain/entities/product.dart';
 
-import '../../../../core/data/data_souces/remote/models/products_model.dart';
 import '../../domain/repositories/repository.dart';
 import '../data_sources/remote_data_source.dart';
 

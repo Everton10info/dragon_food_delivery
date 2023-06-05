@@ -14,9 +14,8 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       : super(CategoriesInitial()) {
     on<FindCategoryEvent>((event, emit) async {
       List<Product> listCategory = await findCategoryUseCase(event.category);
-      on((event, emit) {
-        emit(CategoryLoaded(listCategory: listCategory));
-      });
+
+      emit(CategoryLoadedState(listCategory: listCategory));
     });
   }
 }
