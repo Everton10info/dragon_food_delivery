@@ -1,4 +1,4 @@
-import 'package:dragon_food/core/data/data_souces/remote/models/products_model.dart';
+import 'package:dragon_food/core/find_products/data/data_souces/remote/models/products_model.dart';
 import 'package:dragon_food/features/home/domain/entities/product.dart';
 
 import '../../domain/repositories/repository.dart';
@@ -30,5 +30,10 @@ class HomeRepositoryImpl implements HomeRepository {
     }
 
     return productsEntity;
+  }
+
+  @override
+  Future<Map<String, dynamic>> getVerify() {
+    return homeDataSource.authVerify();
   }
 }

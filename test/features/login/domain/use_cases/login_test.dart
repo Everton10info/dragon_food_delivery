@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:dragon_food/core/session/user_session_model.dart';
-import 'package:dragon_food/core/data/data_souces/remote/client/client.dart';
+import 'package:dragon_food/core/session/data/models/user_session_model.dart';
+import 'package:dragon_food/core/client/client.dart';
 import 'package:dragon_food/features/login/data/data_sources/remote_data_source.dart';
 import 'package:dragon_food/features/login/domain/repositories/repository.dart';
 import 'package:dragon_food/features/login/domain/use_cases/login.dart';

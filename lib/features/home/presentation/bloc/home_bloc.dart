@@ -5,14 +5,20 @@ import 'package:equatable/equatable.dart';
 import 'package:dragon_food/features/home/domain/entities/product.dart';
 import 'package:dragon_food/features/home/domain/use_cases/find_daily_deal.dart';
 
+import '../../domain/use_cases/auth.dart';
+
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final FindDailyDealUseCase usecase;
-  HomeBloc({required this.usecase}) : super(FindDailyDealInitial()) {
+  final FindDailyDealUseCase findproductsUsecase;
+  final VerifyAuthUseCase verifyUsecase;
+  HomeBloc({
+    required this.findproductsUsecase,
+    required this.verifyUsecase,
+  }) : super(FindDailyDealInitial()) {
     on<FindDailyDealEvent>((event, emit) async {
-      final Product? product = (await usecase());
+      final Product? product = (await findproductsUsecase());
 
       emit(FindDailyDealLoader());
 
@@ -24,6 +30,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         );
       }
     });
-    on((event, emit) => 0);
+    on<VerifyAuth>((event, emit) async {
+      final loged = await verifyUsecase();
+      print(loged);
+    });
   }
 }

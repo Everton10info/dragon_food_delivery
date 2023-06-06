@@ -1,4 +1,4 @@
-import '../../../../core/data/data_souces/remote/models/products_model.dart';
+import '../../../../core/find_products/data/data_souces/remote/models/products_model.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/repositories/repository.dart';
 import '../datasources/remote_data_source.dart';

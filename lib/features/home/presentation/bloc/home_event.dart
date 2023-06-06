@@ -8,3 +8,5 @@ abstract class HomeEvent extends Equatable {
 }
 
 class FindDailyDealEvent extends HomeEvent {}
+
+class VerifyAuth extends HomeEvent {}

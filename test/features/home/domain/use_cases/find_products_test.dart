@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:dragon_food/core/data/data_souces/remote/client/client.dart';
+import 'package:dragon_food/core/client/client.dart';
 import 'package:dragon_food/features/home/domain/entities/product.dart';
 import 'package:dragon_food/features/home/domain/repositories/repository.dart';
 import 'package:dragon_food/features/home/domain/use_cases/find_daily_deal.dart';

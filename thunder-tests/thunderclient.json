@@ -113,12 +113,12 @@
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-06-05T21:01:47.343Z",
-    "modified": "2023-06-05T21:09:02.988Z",
+    "modified": "2023-06-06T01:23:16.368Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDgzYjZiOWRhNTkyN2M0YzliMTY2YiIsImlhdCI6MTY4NTk5OTMxMywiZXhwIjoxNjg2MDg1NzEzfQ.CK1nWV0jYoy4mpKCFmFeddUN3us2cd431ghUPxSyq"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDg2NWIyYWU3OTEyZWRmMzdiYTBiNyIsImlhdCI6MTY4NjAxNDUwNCwiZXhwIjoxNjg2MTAwOTA0fQ.JWviUs4LQkhQfZ2IcTldO_SgajNXuQ5AIMR8l8CQ3KM"
     },
     "tests": []
   }

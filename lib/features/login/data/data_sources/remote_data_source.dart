@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../../../../core/env/app_environment.dart';
-import '../../../../core/data/data_souces/remote/client/client.dart';
+import '../../../../core/client/client.dart';
 
 class LoginDataSource {
   final AppClient client;

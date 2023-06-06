@@ -19,6 +19,12 @@ class FindDailyDealLoaded extends HomeState {
   });
 }
 
+class Loged extends HomeState {
+  final String message;
+
+  const Loged({required this.message});
+}
+
 class FindDailyDealException extends HomeState {
   final String message;
 

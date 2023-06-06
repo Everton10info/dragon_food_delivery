@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     bloc = getIt<HomeBloc>();
     bloc.add(FindDailyDealEvent());
+    bloc.add(VerifyAuth());
 
     list = <Widget>[
       InkWell(

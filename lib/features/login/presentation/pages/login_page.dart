@@ -167,7 +167,11 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor:
                                 const Color(0xffF1CE39), // Background color
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacementNamed(
+                              '/home-page',
+                            );
+                          },
                           child: const Text(
                             'Me Cadastrar',
                             style: TextStyle(color: Color(0xFF141414)),
