@@ -405,99 +405,149 @@ class _HomePageState extends State<HomePage> {
         body: Container(
           constraints: const BoxConstraints(minWidth: 300, maxWidth: 550),
           margin: const EdgeInsets.symmetric(horizontal: 24),
-          child: SingleChildScrollView(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const SizedBox(
-                height: 24,
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      TextFormField(
+                        maxLength: 24,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          suffix: InkWell(
+                            child: const Icon(Icons.search_rounded),
+                            onTap: () {},
+                          ),
+                          hintText: 'Search',
+                          focusedErrorBorder: InputBorder.none,
+                          errorStyle: const TextStyle(color: Colors.amber),
+                          filled: true,
+                          fillColor: const Color(0xfff2f2f2),
+                          focusedBorder: const UnderlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          border: const UnderlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        child: const Text(
+                          'Desconto do dia!',
+                          style: TextStyle(
+                            color: Color(0xffffffff),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 180,
+                        child: BlocBuilder<HomeBloc, HomeState>(
+                          bloc: bloc,
+                          builder: (context, state) {
+                            if (state is FindDailyDealLoaded) {
+                              return Column(
+                                children: [
+                                  Container(
+                                    height: 150,
+                                    alignment: Alignment.center,
+                                    child: state.product.cacheImage,
+                                  ),
+                                  Container(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      state.product.description,
+                                      style: const TextStyle(
+                                        color: Color(0xffffffff),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                ],
+                              );
+                            }
+                            return const SizedBox.shrink();
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      const Text(
+                        'Categorias',
+                        style: TextStyle(
+                          color: Color(0xffffffff),
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.48,
+                        child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                          ),
+                          itemCount: list.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(2),
+                              child: list[index],
+                            );
+                          },
+                        ),
+                      ),
+                    ]),
               ),
-              TextFormField(
-                maxLength: 24,
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  suffix: InkWell(
-                    child: const Icon(Icons.search_rounded),
-                    onTap: () {},
-                  ),
-                  hintText: 'Search',
-                  focusedErrorBorder: InputBorder.none,
-                  errorStyle: const TextStyle(color: Colors.amber),
-                  filled: true,
-                  fillColor: const Color(0xfff2f2f2),
-                  focusedBorder: const UnderlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  border: const UnderlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                ),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: const Text(
-                  'Desconto do dia!',
-                  style: TextStyle(
-                    color: Color(0xffffffff),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 180,
-                child: BlocBuilder<HomeBloc, HomeState>(
-                  bloc: bloc,
-                  builder: (context, state) {
-                    if (state is FindDailyDealLoaded) {
-                      return Column(
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 90),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xff474747).withOpacity(0.90),
+                      ),
+                      height: 50,
+                      width: 300,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            child: state.product.cacheImage,
+                          const Text(
+                            ' Para melhor experiência',
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.red,
+                                fontWeight: FontWeight.w400),
                           ),
-                          Container(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              state.product.description,
-                              style: const TextStyle(
-                                color: Color(0xffffffff),
-                              ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .popAndPushNamed('/login-page');
+                            },
+                            child: const Text(
+                              ' faça login',
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 14,
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w700),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
+                          )
                         ],
-                      );
-                    }
-                    return const SizedBox.shrink();
-                  },
+                      )),
                 ),
               ),
-              const SizedBox(
-                height: 24,
-              ),
-              const Text(
-                'Categorias',
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.48,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                  ),
-                  itemCount: list.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: list[index],
-                    );
-                  },
-                ),
-              )
-            ]),
+            ],
           ),
         ),
         extendBody: true,

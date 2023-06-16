@@ -31,8 +31,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     });
     on<VerifyAuth>((event, emit) async {
-      final loged = await verifyUsecase();
-      print(loged);
+      // final loged = await verifyUsecase();
+      // print(loged);
     });
   }
 }

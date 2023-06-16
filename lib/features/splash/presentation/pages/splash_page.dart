@@ -1,6 +1,7 @@
 import 'package:dragon_food/features/splash/presentation/bloc/splash_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../injection_container.dart';
 
@@ -18,29 +19,38 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     bloc = getIt<SplashBloc>();
     bloc.add(FindProductsEvent());
-
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     super.initState();
-    _startScreenNavigatorTimer();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff141414),
-      body: Center(
-        child: Image.asset('assets/logo/Logo.png'),
-      ),
-    );
-  }
-
-  Future<void> _startScreenNavigatorTimer() async {
-    await Future.delayed(const Duration(seconds: 3));
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    if (mounted) {
-      Navigator.of(context).pushReplacementNamed(
-        '/home-page',
-      );
-    }
+        backgroundColor: const Color(0xff141414),
+        body: BlocConsumer(
+          bloc: bloc,
+          listener: (context, state) {
+            if (state is SplashProductsLoadedState) {
+              Navigator.of(context).pushReplacementNamed('/home-page');
+              SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+            }
+          },
+          builder: (BuildContext context, Object? state) {
+            return Stack(children: [
+              if (state is SplashInitial)
+                const Center(
+                  child: SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: CircularProgressIndicator(
+                        color: Color(0xffF1CE39),
+                      )),
+                ),
+              Center(
+                child: Image.asset('assets/logo/Logo.png'),
+              ),
+            ]);
+          },
+        ));
   }
 }

@@ -1,35 +1,59 @@
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dragon_food/core/client/client.dart';
-import 'package:dragon_food/features/home/domain/entities/product.dart';
+import 'package:dragon_food/core/find_products/data/data_souces/remote/models/products_model.dart';
+import 'package:dragon_food/features/home/data/data_sources/remote_data_source.dart';
+import 'package:dragon_food/features/home/data/repositories/repository_impl.dart';
 import 'package:dragon_food/features/home/domain/repositories/repository.dart';
 import 'package:dragon_food/features/home/domain/use_cases/find_daily_deal.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockRepoGet extends Mock implements HomeRepository {}
+class Mockproduct extends Mock implements HomeDataSource {}
 
 void main() async {
-  late MockRepoGet mockRepoProducts;
+  late Mockproduct mockProducts;
+  late HomeRepository homeRepository;
   late FindDailyDealUseCase usecase;
   late AppClient http;
 
   setUp(
     () async {
       http = AppClient();
-
-      mockRepoProducts = MockRepoGet();
-      usecase = FindDailyDealUseCase(repository: mockRepoProducts);
+      mockProducts = Mockproduct();
+      homeRepository = HomeRepositoryImpl(homeDataSource: mockProducts);
+      usecase = FindDailyDealUseCase(repository: homeRepository);
       await dotenv.load(fileName: '.env');
     },
   );
-  test('usecase produtos', () async {
-    when(() => mockRepoProducts.getProducts())
-        .thenAnswer((_) async => <Product>[]);
+  test('homeRepositories produtos', () async {
+    when(() => mockProducts.findProducts())
+        .thenAnswer((_) async => <ProductModel>[]);
+
+    final result = await homeRepository.getProducts();
+
+    expect(result, []);
+  });
+  test('usecase home daily deal ', () async {
+    when(() => mockProducts.findProducts())
+        .thenAnswer((_) async => <ProductModel>[
+              ProductModel(
+                  title: 'title',
+                  category: 'dailyDeal',
+                  description: 'description',
+                  price: 0,
+                  local: 'Casa das cucas',
+                  ingredients: 'ingredients',
+                  deliveryPrice: 2000,
+                  cacheImage: CachedNetworkImage(
+                    imageUrl: '',
+                  ))
+            ]);
 
     final result = await usecase();
 
-    expect(result, []);
+    expect(result?.category, 'dailyDeal');
   });
 
   test('api ok ', () async {

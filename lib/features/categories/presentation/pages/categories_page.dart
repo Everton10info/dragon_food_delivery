@@ -85,8 +85,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Align(
-                                            alignment: Alignment.centerRight,
+                                          Container(
+                                            width: 139,
+                                            alignment: Alignment.center,
                                             child: list[index].cacheImage,
                                           ),
                                           const SizedBox(

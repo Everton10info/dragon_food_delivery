@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dragon_food/core/session/data/data_sources/local/app_shared_preferences.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../env/app_environment.dart';
 import '../../../../client/client.dart';
@@ -23,7 +22,7 @@ class VerifyDataSourceImpl implements VerifyDataSource {
     final Map<String, dynamic> session = jsonDecode(userSession.toString());
     UserSessionModel user = UserSessionModel.fromJson(session);
     String token = user.token!;
-    print(user.token);
+
     final response = await client.get(uri: url + path, headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token',
