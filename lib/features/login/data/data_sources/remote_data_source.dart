@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import '../../../../core/env/app_environment.dart';
 import '../../../../core/client/client.dart';
+import '../../../../core/env/app_environment.dart';
 
 class LoginDataSource {
   final AppClient client;
@@ -15,7 +15,7 @@ class LoginDataSource {
     final result = await client.post(
         uri: url + path,
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({"email": email, "password": password}));
+        body: jsonEncode({'email': email, 'password': password}));
     return jsonDecode(result.body);
   }
 }

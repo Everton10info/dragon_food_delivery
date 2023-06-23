@@ -1,4 +1,4 @@
-import 'package:dragon_food/features/login/domain/entities/user.dart';
+import '../../domain/entities/user.dart';
 
 class UserModel extends User {
   UserModel({

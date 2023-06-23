@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:dragon_food/core/session/data/models/user_session_model.dart';
-import 'package:dragon_food/core/session/data/data_sources/local/app_shared_preferences.dart';
-import 'package:dragon_food/features/login/data/data_sources/remote_data_source.dart';
-import 'package:dragon_food/features/login/domain/repositories/repository.dart';
+
+import '../../../../core/session/data/data_sources/local/app_shared_preferences.dart';
+import '../../../../core/session/data/models/user_session_model.dart';
+import '../../domain/repositories/repository.dart';
+import '../data_sources/remote_data_source.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final LoginDataSource appHttpClientLogin;

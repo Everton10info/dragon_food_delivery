@@ -11,12 +11,12 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   });
   @override
   Future<List<Product>> getProducts() async {
-    List<Product> productsEntity = [];
+    final List<Product> productsEntity = [];
     final List<ProductModel> products =
         await categoriesDataSource.findProducts();
 
     for (var product in products) {
-      Product entity = Product(
+      final Product entity = Product(
           title: product.title,
           category: product.category,
           description: product.description,

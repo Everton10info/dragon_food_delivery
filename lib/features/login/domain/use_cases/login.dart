@@ -1,4 +1,4 @@
-import 'package:dragon_food/features/login/domain/repositories/repository.dart';
+import '../repositories/repository.dart';
 
 class Login {
   final LoginRepository loginRepository;

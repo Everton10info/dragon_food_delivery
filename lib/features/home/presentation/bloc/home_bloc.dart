@@ -2,10 +2,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:dragon_food/features/home/domain/entities/product.dart';
-import 'package:dragon_food/features/home/domain/use_cases/find_daily_deal.dart';
-
+import '../../domain/entities/product.dart';
 import '../../domain/use_cases/auth.dart';
+import '../../domain/use_cases/find_daily_deal.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

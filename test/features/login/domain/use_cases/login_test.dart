@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:dragon_food/core/session/data/models/user_session_model.dart';
+
 import 'package:dragon_food/core/client/client.dart';
+import 'package:dragon_food/core/session/data/models/user_session_model.dart';
 import 'package:dragon_food/features/login/data/data_sources/remote_data_source.dart';
 import 'package:dragon_food/features/login/domain/repositories/repository.dart';
 import 'package:dragon_food/features/login/domain/use_cases/login.dart';
@@ -27,7 +28,7 @@ void main() async {
     when(() => mockRepo.authentication(any(), any()))
         .thenAnswer((_) async => {'token': '123'});
 
-    final result = await usecase("everton@gmail.com", "12345678");
+    final result = await usecase('everton@gmail.com', '12345678');
 
     verify(
       () => mockRepo.authentication(any(), any()),
@@ -38,14 +39,14 @@ void main() async {
 
   test('salvar e ler token da sessão', () async {
     final client = LoginDataSource(client: AppClient());
-    final res = await client.login("everton@gmail.com", "12345678");
+    final res = await client.login('everton@gmail.com', '12345678');
 
     pref.setString('session', jsonEncode(res));
 
     final Map<String, dynamic> session =
         jsonDecode(pref.get('session').toString());
 
-    UserSessionModel user = UserSessionModel.fromJson(session);
+    final UserSessionModel user = UserSessionModel.fromJson(session);
 
     expect(user.email, 'everton@gmail.com');
   });

@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:dragon_food/core/session/data/data_sources/local/app_shared_preferences.dart';
-
-import '../../../../env/app_environment.dart';
 import '../../../../client/client.dart';
-
+import '../../../../env/app_environment.dart';
 import '../../models/user_session_model.dart';
+import '../local/app_shared_preferences.dart';
 import 'remote_data_source.dart';
 
 class VerifyDataSourceImpl implements VerifyDataSource {
@@ -20,8 +18,8 @@ class VerifyDataSourceImpl implements VerifyDataSource {
   Future<Map<String, dynamic>> getVerifyToken() async {
     final userSession = await AppSharedPreferences.getData('user-session');
     final Map<String, dynamic> session = jsonDecode(userSession.toString());
-    UserSessionModel user = UserSessionModel.fromJson(session);
-    String token = user.token!;
+    final UserSessionModel user = UserSessionModel.fromJson(session);
+    final String token = user.token!;
 
     final response = await client.get(uri: url + path, headers: {
       'Content-Type': 'application/json',

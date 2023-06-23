@@ -1,6 +1,5 @@
-import 'package:dragon_food/core/find_products/data/data_souces/remote/models/products_model.dart';
-import 'package:dragon_food/features/home/domain/entities/product.dart';
-
+import '../../../../core/find_products/data/data_souces/remote/models/products_model.dart';
+import '../../domain/entities/product.dart';
 import '../../domain/repositories/repository.dart';
 import '../data_sources/remote_data_source.dart';
 
@@ -12,11 +11,11 @@ class HomeRepositoryImpl implements HomeRepository {
   });
   @override
   Future<List<Product>> getProducts() async {
-    List<Product> productsEntity = [];
+    final List<Product> productsEntity = [];
     final List<ProductModel> products = await homeDataSource.findProducts();
 
     for (var product in products) {
-      Product entity = Product(
+      final Product entity = Product(
           title: product.title,
           category: product.category,
           description: product.description,

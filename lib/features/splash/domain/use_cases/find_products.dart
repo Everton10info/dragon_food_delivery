@@ -1,5 +1,4 @@
-import 'package:dragon_food/features/splash/domain/entities/product.dart';
-
+import '../entities/product.dart';
 import '../repositories/repository.dart';
 
 class SplashProductsUseCase {

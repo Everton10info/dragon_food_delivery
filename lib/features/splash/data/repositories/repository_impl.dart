@@ -1,5 +1,4 @@
-import 'package:dragon_food/core/find_products/data/data_souces/remote/models/products_model.dart';
-
+import '../../../../core/find_products/data/data_souces/remote/models/products_model.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/repositories/repository.dart';
 import '../datasources/remote_data_source.dart';
@@ -11,11 +10,11 @@ class SplashRepositoryImpl implements SplashRepository {
 
   @override
   Future<List<Product>> getProducts() async {
-    List<Product> productsEntity = [];
+    final List<Product> productsEntity = [];
     final List<ProductModel> products = await splashDataSource.findProducts();
 
     for (var product in products) {
-      Product entity = Product(
+      final Product entity = Product(
           title: product.title,
           category: product.category,
           description: product.description,

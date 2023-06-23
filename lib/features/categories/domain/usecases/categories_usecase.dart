@@ -12,7 +12,7 @@ class FindCategoryUseCase {
 
   Future<List<Product>> call(String category) async {
     final listProducts = await repository.getProducts();
-    List<Product> listTemp = [];
+    final List<Product> listTemp = [];
 
     for (var element in listProducts) {
       if (element.category == category) {
