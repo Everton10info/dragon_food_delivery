@@ -1,17 +1,18 @@
 import 'dart:convert';
 
 import '../../../../core/client/client.dart';
-import '../../../../core/env/app_environment.dart';
+import '../../../../core/remote_config/firebase_remote_config.dart';
 
 class LoginDataSource {
   final AppClient client;
   String path = '/session';
-  String url = AppEnvironment.baseUrl;
 
   LoginDataSource({
     required this.client,
   });
   Future<Map<String, dynamic>> login(String email, String password) async {
+    final String url =
+        await CustomRemoteConfig().find('api'); //AppEnvironment.baseUrl;
     final result = await client.post(
         uri: url + path,
         headers: {'Content-Type': 'application/json'},

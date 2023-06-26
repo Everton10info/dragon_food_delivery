@@ -13,25 +13,24 @@ class CustomRemoteConfig {
     try {
       await _firebaseRemoteConfig.setConfigSettings(RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 10),
-        minimumFetchInterval: const Duration(minutes: 20),
+        minimumFetchInterval: const Duration(seconds: 10),
       ));
     } catch (e) {
-      //TODO implements errors
       debugPrint(e.toString());
     }
   }
 
-  Future<void> find(key) async {
+  Future<String> find(key) async {
     try {
       await _firebaseRemoteConfig.setConfigSettings(RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 10),
         minimumFetchInterval: Duration.zero,
       ));
-      var _value = _firebaseRemoteConfig.getInt(key);
-      print(_value);
+      _firebaseRemoteConfig.fetchAndActivate();
+      return _firebaseRemoteConfig.getString(key);
     } catch (e) {
-      print(e.toString());
       debugPrint(e.toString());
     }
+    return '';
   }
 }

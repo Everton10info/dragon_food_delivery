@@ -33,12 +33,10 @@ dependencies:
   flutter_bloc: ^8.1.2
   http: ^0.13.6
   get_it: ^7.6.0
-  dotenv: ^4.1.0
-  lottie: ^2.3.2
   cached_network_image: ^3.2.3
   firebase_core: ^2.14.0
   firebase_remote_config: ^4.2.3
-  firebase_analytics: ^10.4.3
+ 
 
 
 

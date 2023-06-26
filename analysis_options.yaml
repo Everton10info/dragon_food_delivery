@@ -2,7 +2,6 @@ include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:
-  
     avoid_classes_with_only_static_members: false
     directives_ordering: true
     flutter_style_todos: true

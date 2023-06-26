@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/remote_config/firebase_remote_config.dart';
 import '../../../../injection_container.dart';
 import '../bloc/splash_bloc.dart';
 
@@ -18,9 +17,6 @@ class _SplashPageState extends State<SplashPage> {
   String description = '';
   @override
   void initState() {
-    var t = 'teste';
-    CustomRemoteConfig().find(t);
-
     bloc = getIt<SplashBloc>();
     bloc.add(FindProductsEvent());
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
