@@ -1,16 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'core/remote_config/firebase_remote_config.dart';
 import 'core/routes/app_routes.dart';
-import 'firebase_options.dart';
+//import 'firebase_options.dart';
 import 'injection_container.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
+
+  await CustomRemoteConfig().initialize();
   await init();
   await dotenv.load(fileName: '.env');
   runApp(const MyApp());
