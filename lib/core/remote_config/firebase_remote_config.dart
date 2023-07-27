@@ -13,8 +13,9 @@ class CustomRemoteConfig {
     try {
       await _firebaseRemoteConfig.setConfigSettings(RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 10),
-        minimumFetchInterval: const Duration(seconds: 10),
+        minimumFetchInterval: Duration.zero,
       ));
+      _firebaseRemoteConfig.fetchAndActivate();
     } catch (e) {
       debugPrint(e.toString());
     }

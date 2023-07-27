@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/product.dart';
-import '../../domain/use_cases/auth.dart';
 import '../../domain/use_cases/find_daily_deal.dart';
 
 part 'home_event.dart';
@@ -11,11 +10,10 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FindDailyDealUseCase findproductsUsecase;
-  final VerifyAuthUseCase verifyUsecase;
+
   HomeBloc({
     required this.findproductsUsecase,
-    required this.verifyUsecase,
-  }) : super(FindDailyDealInitial()) {
+  }) : super(HomeStateInitial()) {
     on<FindDailyDealEvent>((event, emit) async {
       final Product? product = (await findproductsUsecase());
 
@@ -28,10 +26,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           FindDailyDealLoaded(product: product),
         );
       }
-    });
-    on<VerifyAuth>((event, emit) async {
-      // final loged = await verifyUsecase();
-      // print(loged);
     });
   }
 }

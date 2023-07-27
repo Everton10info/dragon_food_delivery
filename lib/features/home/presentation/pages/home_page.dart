@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/session/manager_session/manager_session.dart';
+import '../../../../core/utils/categories.dart';
 import '../../../../core/widgets/menu/app_navigator_bootom.dart';
 import '../../../../injection_container.dart';
 import '../bloc/home_bloc.dart';
@@ -14,216 +16,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late HomeBloc bloc;
-  late List<Widget> list;
+  late List<Widget> categories;
   @override
   void initState() {
     bloc = getIt<HomeBloc>();
     bloc.add(FindDailyDealEvent());
-    bloc.add(VerifyAuth());
-
-    list = <Widget>[
-      InkWell(
-        onTap: () => Navigator.of(context).pushNamed('/categories-page'),
-        child: SizedBox(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/lanches.png',
-                width: 90,
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              const Center(
-                child: Text(
-                  'Lanches',
-                  style: TextStyle(
-                    color: Color(0xffffffff),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-      SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/burguer.png',
-              width: 90,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            const Center(
-              child: Text(
-                'Hamburguer',
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/salada .png',
-              width: 90,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            const Center(
-              child: Text(
-                'Saladas',
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/pizza .png',
-              width: 90,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            const Center(
-              child: Text(
-                'Pizzas',
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/sushi .png',
-              width: 90,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            const Center(
-              child: Text(
-                'Sushi',
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/massa .png',
-              width: 90,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            const Center(
-              child: Text(
-                'Massas',
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/doces.png',
-              width: 90,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            const Center(
-              child: Text(
-                'Doces',
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/marmitex .png',
-              width: 90,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            const Center(
-              child: Text(
-                'Marmitex',
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/lanches.png',
-              width: 90,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            const Center(
-              child: Text(
-                'Lanches',
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    ];
+    categories = Categories.buildList(context);
     super.initState();
   }
 
@@ -247,159 +45,7 @@ class _HomePageState extends State<HomePage> {
         ),
         drawer: SizedBox(
           height: MediaQuery.of(context).size.height - 40,
-          child: Drawer(
-            surfaceTintColor: const Color(0xffFEB055),
-            backgroundColor: const Color(0xffFEB055),
-            elevation: 10,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(40),
-                  bottomRight: Radius.circular(40)),
-            ),
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  color: const Color(0xff191414),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/logo/Logo.png',
-                        width: 75,
-                      ),
-                      const SizedBox(height: 40),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/Perfil.png',
-                            width: 50,
-                          ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          const Text(
-                            'Olá! Dragon Food!',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Image.asset('assets/images/Onda background.png'),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 26),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 24,
-                      ),
-                      InkWell(
-                        onTap: () => Navigator.of(context)
-                            .popAndPushNamed('/login-page'),
-                        child: Row(
-                          children: [
-                            Image.asset('assets/icons/celular.png'),
-                            const SizedBox(
-                              width: 24,
-                            ),
-                            const Text(
-                              'Login',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/shopping_bag.png',
-                            width: 18,
-                          ),
-                          const SizedBox(
-                            width: 24,
-                          ),
-                          const Text(
-                            'Pedidos',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/Favoritos.png',
-                            width: 19,
-                          ),
-                          const SizedBox(
-                            width: 24,
-                          ),
-                          const Text(
-                            'Favoritos',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/politica_privacidade.png',
-                            width: 19,
-                          ),
-                          const SizedBox(
-                            width: 24,
-                          ),
-                          const Text(
-                            'Política de privacidade',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.25,
-                      ),
-                      const Divider(
-                        color: Color(0xff191414),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/exit.png',
-                              width: 19,
-                            ),
-                            const SizedBox(
-                              width: 16,
-                            ),
-                            const Text(
-                              'Sair',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
+          child: _buildDrawer(),
         ),
         backgroundColor: const Color(0xff141414),
         body: Container(
@@ -496,61 +142,230 @@ class _HomePageState extends State<HomePage> {
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                           ),
-                          itemCount: list.length,
+                          itemCount: categories.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding: const EdgeInsets.all(2),
-                              child: list[index],
+                              child: categories[index],
                             );
                           },
                         ),
                       ),
                     ]),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 90),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xff474747).withOpacity(0.90),
-                      ),
-                      height: 50,
-                      width: 300,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            ' Para melhor experiência',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.red,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .popAndPushNamed('/login-page');
-                            },
-                            child: const Text(
-                              ' faça login',
-                              style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 14,
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.w700),
+              Session.user['authenticated']
+                  ? const SizedBox.shrink()
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 90),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: const Color(0xff474747).withOpacity(0.90),
                             ),
-                          )
-                        ],
-                      )),
-                ),
-              ),
+                            height: 50,
+                            width: double.infinity,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  children: [
+                                    const Text(
+                                      ' Para melhor experiência acesse sua conta',
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .pushNamed('/login-page');
+                                      },
+                                      child: const Text(
+                                        ' Login ou cadastro',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )),
+                      ),
+                    ),
             ],
           ),
         ),
         extendBody: true,
         bottomNavigationBar: const AppNavigatorBar());
+  }
+
+  Widget _buildDrawer() {
+    return Drawer(
+      surfaceTintColor: const Color(0xffFEB055),
+      backgroundColor: const Color(0xffFEB055),
+      elevation: 10,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topRight: Radius.circular(40), bottomRight: Radius.circular(40)),
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(20),
+            color: const Color(0xff191414),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/logo/Logo.png',
+                  width: 75,
+                ),
+                const SizedBox(height: 40),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/Perfil.png',
+                      width: 50,
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Text(
+                      'Olá! ${Session.user['user'] ?? 'dragon food'}'
+                          .toUpperCase(),
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Image.asset('assets/images/Onda background.png'),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 26),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 24,
+                ),
+                InkWell(
+                  onTap: () =>
+                      Navigator.of(context).popAndPushNamed('/login-page'),
+                  child: Row(
+                    children: [
+                      Image.asset('assets/icons/celular.png'),
+                      const SizedBox(
+                        width: 24,
+                      ),
+                      const Text(
+                        'Login',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 22,
+                ),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/shopping_bag.png',
+                      width: 18,
+                    ),
+                    const SizedBox(
+                      width: 24,
+                    ),
+                    const Text(
+                      'Pedidos',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 22,
+                ),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/Favoritos.png',
+                      width: 19,
+                    ),
+                    const SizedBox(
+                      width: 24,
+                    ),
+                    const Text(
+                      'Favoritos',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 22,
+                ),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/politica_privacidade.png',
+                      width: 19,
+                    ),
+                    const SizedBox(
+                      width: 24,
+                    ),
+                    const Text(
+                      'Política de privacidade',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.25,
+                ),
+                const Divider(
+                  color: Color(0xff191414),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {});
+                      Session.logout();
+
+                      Navigator.of(context).pop('home-page');
+                    },
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/icons/exit.png',
+                          width: 19,
+                        ),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        const Text(
+                          'Sair',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

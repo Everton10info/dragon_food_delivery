@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../../core/session/manager_session/manager_session.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/use_cases/find_products.dart';
 
@@ -11,6 +12,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final SplashProductsUseCase usecase;
   SplashBloc({required this.usecase}) : super(SplashInitial()) {
     on<FindProductsEvent>((event, emit) async {
+      Session.getVerifyToken();
       await Future.delayed(const Duration(seconds: 2));
 
       final List<Product> product = (await usecase());

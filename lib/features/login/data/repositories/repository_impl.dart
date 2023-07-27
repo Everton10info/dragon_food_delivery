@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import '../../../../core/session/data/data_sources/local/app_shared_preferences.dart';
-import '../../../../core/session/data/models/user_session_model.dart';
+import '../../../../core/session/data_sources/local/app_shared_preferences.dart';
+import '../../../../core/session/models/session_model.dart';
 import '../../domain/repositories/repository.dart';
 import '../data_sources/remote_data_source.dart';
 
@@ -18,8 +18,8 @@ class LoginRepositoryImpl implements LoginRepository {
       return result;
     } else {
       AppSharedPreferences.setString('user-session', jsonEncode(result));
-      UserSessionModel.fromJson(result);
 
+      UserSessionModel.fromJson(result);
       return result;
     }
   }

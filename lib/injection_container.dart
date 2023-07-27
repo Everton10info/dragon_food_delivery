@@ -2,7 +2,6 @@ import 'package:get_it/get_it.dart';
 
 import 'core/client/client.dart';
 import 'core/find_products/data/data_souces/remote/remote_data_source_impl.dart';
-import 'core/session/data/data_sources/remote/remote_data_source_impl.dart';
 import 'features/categories/data/datasources/remote_data_source.dart';
 import 'features/categories/data/repositories/repository_impl.dart';
 import 'features/categories/domain/repositories/repository.dart';
@@ -10,7 +9,6 @@ import 'features/categories/domain/usecases/categories_usecase.dart';
 import 'features/categories/presentation/bloc/categories_bloc.dart';
 import 'features/home/data/data_sources/remote_data_source.dart';
 import 'features/home/data/repositories/repository_impl.dart';
-import 'features/home/domain/use_cases/auth.dart';
 import 'features/home/domain/use_cases/find_daily_deal.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
 import 'features/login/data/data_sources/remote_data_source.dart';
@@ -29,8 +27,8 @@ Future<void> init() async {
   getIt.registerLazySingleton<SplashBloc>(
       () => SplashBloc(usecase: getIt<SplashProductsUseCase>()));
   getIt.registerLazySingleton<HomeBloc>(() => HomeBloc(
-      findproductsUsecase: getIt<FindDailyDealUseCase>(),
-      verifyUsecase: getIt<VerifyAuthUseCase>()));
+        findproductsUsecase: getIt<FindDailyDealUseCase>(),
+      ));
   getIt.registerLazySingleton<LoginBloc>(
       () => LoginBloc(usecase: getIt<Login>()));
   getIt.registerLazySingleton<CategoriesBloc>(
@@ -45,8 +43,6 @@ Future<void> init() async {
       () => Login(loginRepository: getIt<LoginRepositoryImpl>()));
   getIt.registerLazySingleton<FindCategoryUseCase>(
       () => FindCategoryUseCase(repository: getIt<CategoriesRepository>()));
-  getIt.registerLazySingleton<VerifyAuthUseCase>(
-      () => VerifyAuthUseCase(repository: getIt<HomeRepositoryImpl>()));
 
   //repositories
   getIt.registerLazySingleton<SplashRepositoryImpl>(
@@ -62,13 +58,12 @@ Future<void> init() async {
   //datasources
   getIt.registerLazySingleton<ProductsDataSourceImpl>(
       () => ProductsDataSourceImpl(client: getIt<AppClient>()));
-  getIt.registerLazySingleton<VerifyDataSourceImpl>(
-      () => VerifyDataSourceImpl(client: getIt<AppClient>()));
+
   getIt.registerLazySingleton<SplashDataSource>(() =>
       SplashDataSource(productsDataSource: getIt<ProductsDataSourceImpl>()));
   getIt.registerLazySingleton<HomeDataSource>(() => HomeDataSource(
-      productsDataSource: getIt<ProductsDataSourceImpl>(),
-      verifyDataSource: getIt<VerifyDataSourceImpl>()));
+        productsDataSource: getIt<ProductsDataSourceImpl>(),
+      ));
   getIt.registerLazySingleton<LoginDataSource>(
       () => LoginDataSource(client: getIt<AppClient>()));
   getIt.registerLazySingleton<CategoriesDataSource>(() => CategoriesDataSource(

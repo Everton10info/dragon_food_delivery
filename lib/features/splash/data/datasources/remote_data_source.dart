@@ -11,6 +11,3 @@ class SplashDataSource {
     return await productsDataSource.getProducts();
   }
 }
-
-
-// ${userSession['user']['token']}

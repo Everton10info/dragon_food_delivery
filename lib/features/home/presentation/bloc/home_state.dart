@@ -5,10 +5,16 @@ abstract class HomeState extends Equatable {
   const HomeState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [
+        HomeStateInitial,
+        FindDailyDealLoader,
+        FindDailyDealLoaded,
+        FindDailyDealException,
+        Authenticated,
+      ];
 }
 
-class FindDailyDealInitial extends HomeState {}
+class HomeStateInitial extends HomeState {}
 
 class FindDailyDealLoader extends HomeState {}
 
@@ -19,14 +25,10 @@ class FindDailyDealLoaded extends HomeState {
   });
 }
 
-class Loged extends HomeState {
-  final String message;
-
-  const Loged({required this.message});
-}
-
 class FindDailyDealException extends HomeState {
   final String message;
 
   const FindDailyDealException({required this.message});
 }
+
+class Authenticated extends HomeState {}

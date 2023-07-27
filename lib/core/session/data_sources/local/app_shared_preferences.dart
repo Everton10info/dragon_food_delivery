@@ -10,4 +10,9 @@ class AppSharedPreferences {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(key) ?? '';
   }
+
+  static Future<bool> clearData() async {
+    final prefs = await SharedPreferences.getInstance();
+    return await prefs.clear();
+  }
 }

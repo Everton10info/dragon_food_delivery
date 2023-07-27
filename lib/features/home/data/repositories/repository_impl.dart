@@ -30,9 +30,4 @@ class HomeRepositoryImpl implements HomeRepository {
 
     return productsEntity;
   }
-
-  @override
-  Future<Map<String, dynamic>> getVerify() {
-    return homeDataSource.authVerify();
-  }
 }

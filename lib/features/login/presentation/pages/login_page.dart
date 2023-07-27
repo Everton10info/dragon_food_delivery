@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/session/manager_session/manager_session.dart';
 import '../../../../injection_container.dart';
 import '../bloc/login_bloc.dart';
 
@@ -150,6 +151,10 @@ class _LoginPageState extends State<LoginPage> {
                                 if (_formKey.currentState!.validate()) {
                                   _bloc.add(Auth(_controllerEmail.text,
                                       _controllerPassword.text));
+                                  Session.getVerifyToken().whenComplete(() {
+                                    setState(() {});
+                                    Navigator.of(context).pop();
+                                  });
                                 }
                               },
                               child: const Text(
