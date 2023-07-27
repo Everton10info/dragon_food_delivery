@@ -151,10 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                                 if (_formKey.currentState!.validate()) {
                                   _bloc.add(Auth(_controllerEmail.text,
                                       _controllerPassword.text));
-                                  Session.getVerifyToken().whenComplete(() {
-                                    setState(() {});
-                                    Navigator.of(context).pop();
-                                  });
+                                  Navigator.of(context).pop();
                                 }
                               },
                               child: const Text(

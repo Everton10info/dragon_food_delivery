@@ -19,6 +19,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         final result = await usecase(event.email, event.password);
 
         if (result == true) {
+          await Session.getVerifyToken();
           emit(LoginLoaded());
         } else {
           emit(LoginFailure(message: result));

@@ -1,19 +1,21 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 import '../data_sources/local/app_shared_preferences.dart';
 import '../models/session_model.dart';
 
 class Session {
-  static Map<String, dynamic> user = {
+  static ValueNotifier user = ValueNotifier({
     'user': 'Usuário',
     'authenticated': false,
-  };
+  });
   static Future<void> getVerifyToken() async {
     final userSession = await AppSharedPreferences.getData('user-session');
     if (userSession.isNotEmpty) {
       final Map<String, dynamic> session = jsonDecode(userSession.toString());
       final UserSessionModel usermodel = UserSessionModel.fromJson(session);
-      final String token = usermodel.token ?? '';
+      final String token = usermodel.token;
       final payload = token.split('.');
 
       final decodedPayload = jsonDecode(
@@ -25,16 +27,16 @@ class Session {
       );
       final tokenExp = decodedPayload['exp'] * 1000;
       final dateNow = DateTime.now().millisecondsSinceEpoch;
-      final name = usermodel.name;
-      user = {
-        'user': name,
+      final name = usermodel.email.split('@');
+      user.value = {
+        'user': name[0],
         'authenticated': tokenExp > dateNow,
       };
     }
   }
 
   static logout() {
-    user = {
+    user.value = {
       'user': 'Usuário',
       'authenticated': false,
     };

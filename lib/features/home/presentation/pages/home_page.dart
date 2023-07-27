@@ -153,51 +153,57 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ]),
               ),
-              Session.user['authenticated']
-                  ? const SizedBox.shrink()
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 90),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: const Color(0xff474747).withOpacity(0.90),
-                            ),
-                            height: 50,
-                            width: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                  children: [
-                                    const Text(
-                                      ' Para melhor experiência acesse sua conta',
-                                      style: TextStyle(
-                                          fontSize: 13,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .pushNamed('/login-page');
-                                      },
-                                      child: const Text(
-                                        ' Login ou cadastro',
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    )
-                                  ],
+              ValueListenableBuilder(
+                builder: (BuildContext context, value, Widget? child) {
+                  return Session.user.value['authenticated']
+                      ? const SizedBox.shrink()
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 90),
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color:
+                                      const Color(0xff474747).withOpacity(0.90),
                                 ),
-                              ],
-                            )),
-                      ),
-                    ),
+                                height: 50,
+                                width: double.infinity,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        const Text(
+                                          ' Para melhor experiência acesse sua conta',
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.of(context)
+                                                .pushNamed('/login-page');
+                                          },
+                                          child: const Text(
+                                            ' Login ou cadastro',
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        );
+                },
+                valueListenable: Session.user,
+              )
             ],
           ),
         ),
@@ -236,10 +242,16 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       width: 16,
                     ),
-                    Text(
-                      'Olá! ${Session.user['user'] ?? 'dragon food'}'
-                          .toUpperCase(),
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ValueListenableBuilder(
+                      builder: (BuildContext context, value, Widget? child) {
+                        return Text(
+                          'Olá! ${Session.user.value['user'] ?? 'dragon food'}'
+                              .toUpperCase(),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 16),
+                        );
+                      },
+                      valueListenable: Session.user,
                     )
                   ],
                 ),
@@ -338,7 +350,6 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(top: 20),
                   child: InkWell(
                     onTap: () {
-                      setState(() {});
                       Session.logout();
 
                       Navigator.of(context).pop('home-page');
