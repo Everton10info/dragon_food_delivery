@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/find_products/data/data_souces/remote/models/products_model.dart';
 import '../../../../core/session/manager_session/manager_session.dart';
 import '../../../../core/utils/categories.dart';
 import '../../../../core/widgets/menu/app_navigator_bootom.dart';
@@ -60,27 +61,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 24,
                       ),
-                      TextFormField(
-                        maxLength: 24,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          suffix: InkWell(
-                            child: const Icon(Icons.search_rounded),
-                            onTap: () {},
-                          ),
-                          hintText: 'Search',
-                          focusedErrorBorder: InputBorder.none,
-                          errorStyle: const TextStyle(color: Colors.amber),
-                          filled: true,
-                          fillColor: const Color(0xfff2f2f2),
-                          focusedBorder: const UnderlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          border: const UnderlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                        ),
-                      ),
+                      const Search(),
                       const SizedBox(
                         height: 32,
                       ),
@@ -377,6 +358,78 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+    );
+  }
+}
+
+class Search extends StatefulWidget {
+  const Search({super.key});
+
+  @override
+  State<Search> createState() => _Search();
+}
+
+class _Search extends State<Search> {
+  final ValueNotifier list = ValueNotifier([]);
+  final controller = TextEditingController(text: 'search');
+  _searchProducts(String value) {
+    final listTotal = ProductModel.productsCache;
+    list.value =
+        listTotal.where((element) => element.title.contains(value)).toList();
+
+    print('aaaaaaaaaaa ' + list.value[0].title);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextFormField(
+          maxLength: 24,
+          keyboardType: TextInputType.text,
+          onChanged: (value) {
+            _searchProducts(value);
+          },
+          decoration: InputDecoration(
+            suffix: InkWell(
+              child: const Icon(Icons.search_rounded),
+              onTap: () {},
+            ),
+            hintText: 'Search',
+            focusedErrorBorder: InputBorder.none,
+            errorStyle: const TextStyle(color: Colors.amber),
+            filled: true,
+            fillColor: const Color(0xfff2f2f2),
+            focusedBorder: const UnderlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            border: const UnderlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        ValueListenableBuilder(
+            valueListenable: list,
+            builder: (context, value, child) {
+              return SizedBox(
+                height: 200,
+                child: ListView.builder(
+                  itemCount: list.value.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      alignment: Alignment.center,
+                      color: Colors.yellow,
+                      child: Text(
+                        list.value[index].title,
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    );
+                  },
+                ),
+              );
+            }),
+      ],
     );
   }
 }

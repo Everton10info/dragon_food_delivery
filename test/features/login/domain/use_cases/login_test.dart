@@ -48,6 +48,6 @@ void main() async {
 
     final UserSessionModel user = UserSessionModel.fromJson(session);
 
-    expect(user.name, 'everton');
+    expect(user.email, 'everton');
   });
 }
