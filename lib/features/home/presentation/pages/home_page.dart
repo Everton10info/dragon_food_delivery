@@ -61,7 +61,6 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 24,
                       ),
-                      const Search(),
                       const SizedBox(
                         height: 32,
                       ),
@@ -147,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   color:
-                                      const Color(0xff474747).withOpacity(0.90),
+                                      const Color(0xff474747).withOpacity(0.85),
                                 ),
                                 height: 50,
                                 width: double.infinity,
@@ -184,7 +183,11 @@ class _HomePageState extends State<HomePage> {
                         );
                 },
                 valueListenable: Session.user,
-              )
+              ),
+              const SizedBox(
+                height: 180,
+                child: Search(),
+              ),
             ],
           ),
         ),
@@ -370,63 +373,84 @@ class Search extends StatefulWidget {
 }
 
 class _Search extends State<Search> {
+  final ValueNotifier prefixtext = ValueNotifier('');
   final ValueNotifier list = ValueNotifier([]);
-  final controller = TextEditingController(text: 'search');
+  final ValueNotifier hintText = ValueNotifier('Search');
+  final controller = TextEditingController();
   _searchProducts(String value) {
     final listTotal = ProductModel.productsCache;
     list.value =
         listTotal.where((element) => element.title.contains(value)).toList();
-
-    print('aaaaaaaaaaa ' + list.value[0].title);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        TextFormField(
-          maxLength: 24,
-          keyboardType: TextInputType.text,
-          onChanged: (value) {
-            _searchProducts(value);
-          },
-          decoration: InputDecoration(
-            suffix: InkWell(
-              child: const Icon(Icons.search_rounded),
-              onTap: () {},
-            ),
-            hintText: 'Search',
-            focusedErrorBorder: InputBorder.none,
-            errorStyle: const TextStyle(color: Colors.amber),
-            filled: true,
-            fillColor: const Color(0xfff2f2f2),
-            focusedBorder: const UnderlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            border: const UnderlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
         ValueListenableBuilder(
             valueListenable: list,
             builder: (context, value, child) {
-              return SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  itemCount: list.value.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      color: Colors.yellow,
-                      child: Text(
-                        list.value[index].title,
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+              return Column(
+                children: [
+                  TextFormField(
+                    controller: controller,
+                    maxLength: 24,
+                    keyboardType: TextInputType.text,
+                    onChanged: (value) {
+                      prefixtext.value = '';
+                      _searchProducts(value);
+
+                      if (value.isEmpty) list.value = [];
+                    },
+                    decoration: InputDecoration(
+                      prefixText: prefixtext.value,
+                      counter: const Offstage(),
+                      suffix: InkWell(
+                        child: const Icon(Icons.search_rounded),
+                        onTap: () {
+                          //TODO aqui abrir a tela de pedidos e inserir o item com o titulo selecionado
+                        },
                       ),
-                    );
-                  },
-                ),
+                      hintText: hintText.value,
+                      focusedErrorBorder: InputBorder.none,
+                      errorStyle: const TextStyle(color: Colors.amber),
+                      filled: true,
+                      fillColor: const Color(0xfff2f2f2),
+                      focusedBorder: const UnderlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      border: const UnderlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: list.value.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            prefixtext.value = list.value[index].title;
+
+                            controller.clear();
+                            hintText.value = '';
+                            list.value = [];
+                          },
+                          child: Container(
+                            height: 30,
+                            decoration: BoxDecoration(
+                                color: Colors.white60.withOpacity(0.95),
+                                border: Border.all(width: 0.5)),
+                            alignment: Alignment.center,
+                            child: Text(
+                              list.value[index].title,
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 15),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               );
             }),
       ],
