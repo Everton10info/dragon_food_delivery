@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                           if (value!.isNotEmpty && value.length > 7) {
                             return null;
                           } else {
-                            return 'Senha precisa ter no mínimo 8 carateres';
+                            return 'Senha precisa ter no mínimo 8 carateres! ';
                           }
                         },
                       ),
