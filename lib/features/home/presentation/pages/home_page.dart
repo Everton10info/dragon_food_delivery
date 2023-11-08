@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -373,10 +374,10 @@ class Search extends StatefulWidget {
 }
 
 class _Search extends State<Search> {
-  final ValueNotifier prefixtext = ValueNotifier('');
-  final ValueNotifier list = ValueNotifier([]);
+  final list = ValueNotifier(<ProductModel>[]);
   final ValueNotifier hintText = ValueNotifier('Search');
   final controller = TextEditingController();
+  CachedNetworkImage? cacheImage;
   _searchProducts(String value) {
     final listTotal = ProductModel.productsCache;
     list.value =
@@ -397,18 +398,39 @@ class _Search extends State<Search> {
                     maxLength: 24,
                     keyboardType: TextInputType.text,
                     onChanged: (value) {
-                      prefixtext.value = '';
                       _searchProducts(value);
 
                       if (value.isEmpty) list.value = [];
                     },
                     decoration: InputDecoration(
-                      prefixText: prefixtext.value,
                       counter: const Offstage(),
                       suffix: InkWell(
                         child: const Icon(Icons.search_rounded),
                         onTap: () {
-                          //TODO aqui abrir a tela de pedidos e inserir o item com o titulo selecionado
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('indo'),
+                                backgroundColor: Colors.black,
+                                content: Center(
+                                  child: Column(
+                                    children: [
+                                      const LinearProgressIndicator(
+                                          color: Colors.amber),
+                                      const SizedBox(
+                                        height: 24,
+                                      ),
+                                      SizedBox(
+                                        height: 74,
+                                        child: cacheImage,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => null);
                         },
                       ),
                       hintText: hintText.value,
@@ -428,22 +450,39 @@ class _Search extends State<Search> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            prefixtext.value = list.value[index].title;
-
-                            controller.clear();
-                            hintText.value = '';
+                            cacheImage = list.value[index].cacheImage;
+                            controller.text = list.value[index].title;
+                            controller.selection = TextSelection.collapsed(
+                                offset: controller.text.length);
                             list.value = [];
                           },
                           child: Container(
-                            height: 30,
+                            height: 40,
                             decoration: BoxDecoration(
                                 color: Colors.white60.withOpacity(0.95),
-                                border: Border.all(width: 0.5)),
-                            alignment: Alignment.center,
-                            child: Text(
-                              list.value[index].title,
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 15),
+                                border: Border.all()),
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    list.value[index].title,
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 15),
+                                    textAlign: TextAlign.end,
+                                  ),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  SizedBox(
+                                    height: 24,
+                                    child: list.value[index].cacheImage,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         );
